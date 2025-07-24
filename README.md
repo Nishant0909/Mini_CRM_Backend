@@ -55,20 +55,26 @@ A minimal CRM backend built with Node.js, Express, and MongoDB. It supports user
 
 ### User Endpoints
 - **Register:** `POST /api/users/register`
+  - This api will be use for the sign up
   - Body: `{ "username", "password", "first_name", "last_name", "user_type" (optional), "user_status" (optional) }`
 - **Login:** `POST /api/users/login`
+  - This api will be use for the login and it will do the verification of the user and  return JWT token in response
   - Body: `{ "username", "password" }`
   - Sets JWT token in HTTP-only cookie
-- **Logout:** `POST /api/users/logout`
 
 ### Lead Endpoints (require authentication)
 - **Create Lead:** `POST /api/leads/createlead`
+  - This api will create a lead after verification of the user in the middleware
   - Body: `{ "name", "email", "phone", "status", "source", "notes" (optional) }`
 - **Get Leads:** `GET /api/leads/getleadDetails`
+  - This api will return all of the active(not deleted) leads
 - **Update Lead:** `PUT /api/leads/updatelead/:leadid`
+  - This api will update the detail of the particular lead
   - Body: Any updatable lead fields
 - **Delete (Archive) Lead:** `DELETE /api/leads/deletelead/:leadid`
+  - This api will delete the lead (marked as an archived in db but it will not delete that row)
 - **Get Lead Actions:** `GET /api/leads/getleadactions?leadid=LEAD_ID (optional)`
+  - This api will return all of the action on that lead (audit log)
 
 #### Authentication
 - Pass JWT token as a Bearer token in the `Authorization` header, or use the cookie set by login.
@@ -108,3 +114,9 @@ Mini_CRM_Backend/
 
 ## License
 ISC
+
+
+
+
+
+
